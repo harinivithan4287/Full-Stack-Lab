@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Microblogging</title>
+    <style>body {
+        background-image: url('./img-2.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            width: 500px;
+            margin: 10;
+        }
+        .post {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        .post .author {
+            font-weight: bold;
+        }
+        #new-post {
+            margin-top: 20px;
+        }
+        #post-text {
+            width: 100%;
+            padding: 5px;
+            border: 3px solid #ec1515;
+            border-radius: 5px;
+            color:black;
+        }
+        #post-button {
+            margin-top: 5px;
+            padding: 5px 10px;
+            background-color: #000000;
+            color: #ffffff;
+            border:#3700ff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button id="logoutButton" onclick="logout()" style=" margin-left: 90%;" class="button">Logout</button><br>
+    <div id="container">
+        <h1 style="color:rgb(223, 217, 223);"><b><i><u>MICROBLOGGING</u>:</i></b></h1>
+        <div id="new-post">
+            <h2 style="color: rgb(253, 249, 0);">Create a new post:</h2>
+            <textarea id="post-text" placeholder="What's on your mind?"></textarea>
+            <br>
+            <button id="post-button">Post</button> <p> </p>
+            <h4 style="color: hsl(0, 0%, 100%);">Use "Choose File" Option To Upload your Image:</h4>
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*">
+          </form>
+          <h2>Uploaded Image:</h2>
+          <img id="preview" src="./img-3.jpg" alt="Uploaded Image:" width="200" height="200">         
+    </div>
+    <script>
+        function postTweet() {
+            const text = document.getElementById('post-text').value;
+            if (text.trim() === '') {
+                alert('Please Enter a Tweet.');
+                return;
+            }
+            const postContainer = document.getElementById('container');
+            const newPost = document.createElement('div');
+            newPost.classList.add('post');
+            newPost.innerHTML = `<span class="author">You:</span><p>${text}</p>`;
+            postContainer.insertBefore(newPost, postContainer.childNodes[3]);
+            document.getElementById('post-text').value = '';
+        }
+        document.getElementById('post-button').addEventListener('click', postTweet);
+        function previewImage(event) {
+      var reader = new FileReader();
+      reader.onload = function() {
+        var preview = document.getElementById('preview');
+        preview.src = reader.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    var uploadInput = document.querySelector('input[type="file"]');
+    uploadInput.addEventListener('change', previewImage);
+    function logout() {
+        window.location.href = "Login.html";
+      }
+    </script>
+</body>
+</html>

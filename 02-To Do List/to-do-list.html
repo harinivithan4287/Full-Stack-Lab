@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+    <style>body {
+        background-image: url('./img-2.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+      h1{
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+        text-shadow: 1px 1px;
+        color:rgb(17, 0, 255);
+        text-align: center;
+      }
+      h2{
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+        text-shadow: 1px 1px 5px red;
+        color:black;
+      }
+      .button {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+.button:hover {background-color: #e48f0f}
+.button:active {
+  background-color: #aa692b;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.button2 {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #49c497;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+.button2:hover {background-color: #5a14cc}
+.button2:active {
+  background-color: #1024da;
+  box-shadow: 0 5px #4906e6;
+  transform: translateY(4px);
+}
+.del {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+    </style>
+</head>
+<body>
+    <div id="content">
+      <h1 style="text-shadow: 1px 1px 5px red;"><b></b><u>TO-DO-LIST...</u></b></h1>
+      
+      <button id="logoutButton" onclick="logout()" style=" margin-left: 90%;" class="button">Logout</button><br>
+      <h2><b>
+        Task Name:</b>
+      </h2>
+      <input type="text" id="taskInput" placeholder="Task Name.."><br>
+      <h2><b>
+        Due-Date And Time:</b>
+      </h2>
+      <input type="date" id="dueDateInput"><br>
+      <br>
+      <button id="addTaskButton" onclick="addTask()" class="button2">Add Task</button><br>
+      <ul id="taskList"></ul>
+    </div>
+    <script>
+      function addTask() {
+        var taskInput = document.getElementById("taskInput");
+        var dueDateInput = document.getElementById("dueDateInput");
+        var taskList = document.getElementById("taskList");
+        var newTask = document.createElement("li");
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        var taskName = document.createElement("span");
+        var dueDate = document.createElement("span");
+        var dueTime = document.createElement("span");
+        taskName.innerText = taskInput.value;
+        dueDate.innerText = "Due: " + formatDate(dueDateInput.value);
+        dueTime.innerText = "Time: " + formatTime(new Date().toLocaleTimeString());
+        newTask.appendChild(checkbox);
+        newTask.appendChild(taskName);
+        newTask.appendChild(dueDate);
+        newTask.appendChild(dueTime);
+        var deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
+        deleteButton.onclick = function() {
+          taskList.removeChild(newTask);
+        };
+        newTask.appendChild(deleteButton);
+        taskList.appendChild(newTask);
+        taskInput.value = "";
+        dueDateInput.value = "";
+      }
+      function formatDate(dateString) {
+        var date = new Date(dateString);
+        var options = { year: "numeric", month: "long", day: "numeric" };
+        return date.toLocaleDateString(undefined, options);
+      }
+      function formatTime(timeString) {
+        var [hour, minute, second] = timeString.split(":");
+        var period = hour >= 12 ? "PM" : "";
+        hour = hour % 12 || 12;
+        return `${hour}:${minute}:${second} ${period}`;
+      }
+      function logout() {
+        window.location.href = "Login.html";
+      }
+    </script>
+  </body>
+</html>

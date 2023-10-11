@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head><title>Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>body {
+  background-image: url('./img-1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover;
+  #my{
+  height:200px;
+  text-align: center;
+}
+.button2 {
+  padding: 15px 25px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #ff00ff;
+  background-color: #000000;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+}
+.button2:hover {background-color: #12e9ba}
+}
+.glow {
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #a04572, 0 0 40px #d4297f, 0 0 50px #e60073, 0 0 60px #db5314, 0 0 70px #ff0000;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff0884, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+</style>
+</head>
+<body>
+<center>
+<div id="my"></div>
+<h1 class="glow" style="color:rgb(4, 252, 157);"><b><i><u>Login Page</u></i></b></h1>
+  <div>
+    <form>
+        <label for="username" style="color: beige;">UserName:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password" style="color: beige;">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <input class="button2" type="button" value="Login" onclick="validate()">
+    </form>
+  </div>
+</div>
+<p id="demo"></p>
+<script>
+        function validate() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            if(username ==="hari" && password ==="hari") {
+                window.location = "choose.html";
+            } else {
+                alert("Invalid username or password!");
+            }
+        }
+    </script></center>
+</body>
+</html>
